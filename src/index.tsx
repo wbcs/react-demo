@@ -1,7 +1,7 @@
 // import render from './app'
 // render()
 // import { reactive, effect } from './reactivity/dist/reactivity.cjs'
-import { reactive, effect } from './reactive'
+import { reactive, effect } from './vue'
 
 const obj = reactive({
   age: 0,
@@ -13,5 +13,5 @@ effect(() => {
 })
 
 setInterval(() => {
-  obj.age++
+  obj.age = obj.age + 1
 }, 2000)
