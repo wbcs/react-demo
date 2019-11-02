@@ -116,7 +116,7 @@ export function trigger(target: object, key: string) {
 
 function addRunners(
   effects: Set<ReactiveEffect>,
-  effectsToAdd?: Set<ReactiveEffect>
+  effectsToAdd: Set<ReactiveEffect> | undefined
 ) {
   if (!effectsToAdd) {
     return
