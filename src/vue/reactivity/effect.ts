@@ -93,51 +93,38 @@ export function track(target: object, key: string) {
   }
   if (!dep.has(effect)) {
     dep.add(effect)
+    // 之所以要有这一行，是在清除依赖的时候使用
     effect.deps.push(dep)
   }
 }
 
-// export function trigger(target: object, key: string) {
-//   const depsMap = targetMap.get(target)
-//   if (!depsMap) return
-//   const depsSet = depsMap.get(key)
-//   if (!depsSet) return
-
-//   // depsSet.forEach(effect => {
-//   //   try {
-//   //     pauseTracking()
-//   //     effect()
-//   //   } finally {
-//   //     resumeTracking()
-//   //   }
-//   // })
-// }
-
 export function trigger(target: object, key: string) {
   const depsMap = targetMap.get(target)
   if (!depsMap) return
-  const effects = new Set()
-  // console.log(depsMap)
+  const effects: Set<ReactiveEffect> = new Set()
   addRunners(effects, depsMap.get(key))
-
-  const run = (effect) => {
+  const run = (effect: ReactiveEffect) => {
     scheduleRun(effect)
   }
+  // 等同[...depsMap.get(key)].forEach
+  // 在执行effect之前会清除掉effect.deps中每个set，set的内容就是effect
+  // 执行effect再次触发track，从而给set重新添加
+  // 也就是targetMap中 target <-> Map(key, set(effect))
+  // 期中的set(effect)重新绑定，就会造成死循环
   effects.forEach(run)
 }
 
 function addRunners(
-  effects: Set<any>,
-  effectsToAdd
+  effects: Set<ReactiveEffect>,
+  effectsToAdd?: Set<ReactiveEffect>
 ) {
   if (!effectsToAdd) {
     return
   }
-  console.log(effectsToAdd)
   effectsToAdd.forEach(effect => effects.add(effect))
 }
 
-function scheduleRun(effect) {
+function scheduleRun(effect: ReactiveEffect) {
   effect()
 }
 

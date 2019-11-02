@@ -12,6 +12,6 @@ effect(() => {
   console.log(obj.age)
 })
 
-setInterval(() => {
+setTimeout(() => {
   obj.age = obj.age + 1
 }, 2000)
