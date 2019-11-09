@@ -17,4 +17,3 @@ const App: React.SFC<IProps> = props => (
 export default () => {
   ReactDOM.render(<App />, document.querySelector('#root'))
 }
- 
