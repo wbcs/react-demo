@@ -5,7 +5,4 @@ dist
 node_modules/
 src/reactivity
 
-package-lock.json
-
 yarn-error.log
-yarn.lock
