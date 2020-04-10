@@ -1,11 +1,9 @@
 module.exports = {
   parser: 'babel-eslint',
-  env: {
-  },
+  env: {},
   root: true,
-  extends: [
-  ],
-  plugins: ['prettier'],
+  extends: [],
+  plugins: ['prettier', 'react-hooks'],
   rules: {
     'prettier/prettier': 'error',
     'array-callback-return': 'error',
@@ -21,5 +19,7 @@ module.exports = {
     'newline-per-chained-call': 'warn',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'semi': ['warn', 'never'],
+    'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
+    'react-hooks/exhaustive-deps': 'warn' // 检查 effect 的依赖
   },
 };
