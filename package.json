@@ -3,22 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run dev",
-    "dev": "webpack-dev-server --config scripts/index.js --open --mode development",
-    "build": "webpack --config scripts/index.js --mode production"
-  },
   "keywords": [],
   "author": "Bruce",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.3.4",
+    "antd": "^4.2.2",
     "core-js": "^3.1.4",
+    "rc-select": "^10.3.2",
+    "rc-virtual-list": "^1.1.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.1.3",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "shadow-view": "^4.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.0",
@@ -49,5 +47,18 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
+    "dev": "webpack-dev-server --config scripts/index.js --open --mode development",
+    "build": "webpack --config scripts/index.js --mode production",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx,json}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

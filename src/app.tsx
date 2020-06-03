@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 
-
 const useForceUpdate = () => {
   const [_, forceUpdate] = useState(Symbol())
   return () => forceUpdate(Symbol())
@@ -17,8 +16,5 @@ const App = () => {
 }
 
 export default () => {
-  ReactDOM.render(
-    <App />,
-    document.querySelector('#root')
-  )
+  ReactDOM.render(<App />, document.querySelector('#root'))
 }
