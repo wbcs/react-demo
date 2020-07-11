@@ -8,7 +8,9 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.3.4",
+    "@dp/msg-center": "^3.0.1",
     "antd": "^4.2.2",
+    "byted-dp-feedback": "^3.9.30",
     "core-js": "^3.1.4",
     "rc-select": "^10.3.2",
     "rc-virtual-list": "^1.1.2",

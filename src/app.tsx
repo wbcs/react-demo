@@ -1,18 +1,32 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { dpMsgCenter } from '@dp/msg-center'
 import * as ReactDOM from 'react-dom'
 
-const useForceUpdate = () => {
-  const [_, forceUpdate] = useState(Symbol())
-  return () => forceUpdate(Symbol())
-}
-
 const App = () => {
-  const forceUpdate = useForceUpdate()
-  const handleClick = () => {
-    forceUpdate()
-  }
-  console.log('update')
-  return <div onClick={handleClick}>1234</div>
+  const ref = useRef()
+  useEffect(() => {
+    // dpMsgCenter({
+    //   secret: 'rkm5LfgLUbRoTH_UmgF9h',
+    //   dom: ref.current!,
+    //   websocket: true
+    // });
+
+    const script = document.createElement('script')
+    script.src =
+      'http://s3.pstatp.com/dp/msgcenter/public/msgcenter_sdk_3.0.1.js'
+    document.body.appendChild(script)
+
+    window.__dpMsgCenterOpts = {
+      secret: 'rkm5LfgLUbRoTH_UmgF9h',
+      dom: ref.current!,
+      websocket: true
+    }
+  }, [])
+  return (
+    <div>
+      <div ref={ref} />
+    </div>
+  )
 }
 
 export default () => {
